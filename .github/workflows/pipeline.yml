@@ -3,12 +3,8 @@ name: Angular Build
 jobs:
   build:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node-version: [16.x]
-
-
-   steps:
+    
+    steps:
       - uses: actions/checkout@v1
 
       - name: build docker image and push to docker hub 
@@ -22,3 +18,6 @@ jobs:
 
       - name: Docker push
         run: docker push dexterlabhunter/angular-actions
+
+      
+     
