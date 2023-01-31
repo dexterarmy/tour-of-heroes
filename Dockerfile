@@ -10,6 +10,6 @@ RUN apt-get install -y nodejs
 RUN npm install -g @angular/cli -y
 RUN npm install http-server -g
 RUN npm install
-RUN ng build --prod
+RUN ng build
 CMD ["http-server", "dist/angular-tour-of-heroes"]
 
