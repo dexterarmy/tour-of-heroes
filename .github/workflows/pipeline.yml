@@ -11,19 +11,14 @@ jobs:
    steps:
       - uses: actions/checkout@v1
 
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: npm install and ng build
-        run: |
-          npm install
-          ng build
-            
+      - name: build docker image and push to docker hub 
+        run: docker build -t dexterlabhunter/angular-actions ./
+
+      - name: login to docker hub 
+        uses: docker/login-action@v2 
+        with: 
+         username: dexterlabhunter
+         password: ${{secrets.DOCKERHUB_TOKEN}}
+
+      - name: Docker push
+        run: docker push dexterlabhunter/angular-actions
