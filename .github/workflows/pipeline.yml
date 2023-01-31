@@ -7,6 +7,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       
+      - name: install angular cli
+        run: |
+          npm install -g @angular/cli 
+      
       - name: npm install and ng build
         run: |
           npm install
